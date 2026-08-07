@@ -1,1 +1,18 @@
-/* css styles */
+/*-- scss:defaults --*/
+
+// Import Google fonts
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+// Colors
+$peppermint: #DAE7D4;
+$forest-green: #228B22;
+$green: #008000;
+$ash-gray: #B2BEB5;
+
+// Sass vars
+$navbar-bg: $forest-green; 
+$navbar-fg: $peppermint; 
+$navbar-hl: $green;
+$body-bg: $forest-green;
+$body-color: $ash-gray; 
+$link-color: $green; 

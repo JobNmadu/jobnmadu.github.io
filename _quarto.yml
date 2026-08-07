@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "jobnmadu.github.io"
+  title: "Data to information ...."
   navbar:
     left:
       - href: index.qmd
@@ -17,6 +17,5 @@ format:
       - brand
     css: styles.css
     toc: true
-
-editor: visual
-
+    page-layout: full
+    mainfont: Elms Sans

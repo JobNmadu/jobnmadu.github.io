@@ -1,11 +1,26 @@
 ---
-title: "jobnmadu.github.io"
+title: "Job Nmadu"
+image: img/quarto.png
+toc: false
+about: 
+  template: jolla
+  image-shape: round
+  image-width: 17em
+  links:
+    - text: LinkedIn
+      icon: linkedin
+      href: https://www.linkedin.com/in/jobnmadu/
+    - text: Bluesky
+      icon: bluesky
+      href: https://bsky.app/profile/nnjob.bsky.social
+    - text: Github 
+      icon: github
+      href: https://github.com/JobNmadu
+    - text: Email
+      icon: envelope
+      href: mailto:job.nmadu@gmail.com
 ---
 
-This is a Quarto website.
+:::{#hero-heading}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
+Academic, Teacher, Researcher, Consultant, Administrator and Community Leader with skills in Statistics and Econometric Modelling; Data Science and Machine Learning; R Programming; Computable General Equilibrium Modeling.
