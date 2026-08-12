@@ -21,6 +21,6 @@ about:
       href: mailto:job.nmadu@gmail.com
 ---
 
-:::{#hero-heading}
+:::{#hero-heading .larger-text}
 
 Academic, Teacher, Researcher, Consultant, Administrator and Community Leader with skills in Statistics and Econometric Modelling; Data Science and Machine Learning; R Programming; Computable General Equilibrium Modeling.

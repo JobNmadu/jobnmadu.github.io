@@ -12,5 +12,236 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#installation",
+    "href": "software/dyn4cast-environment/index.html#installation",
+    "title": "Dyn4cast Environment",
+    "section": "Installation",
+    "text": "Installation\nThe released version of Dyn4cast can be installed from CRAN. The canonical form for CRAN is:\ninstall.packages(\"Dyn4cast\")\nThe development version is available now and can be installed from GitHub with:\n# install.packages(\"devtools\")\npak::pak(\"JobNmadu/Dyn4cast\")\nThe development version can also be installed through r-universe. Use the form:\n\ninstall.packages(\"Dyn4cast\", repos = c(\"https://jobnmadu.r-universe.dev\", \"https://cloud.r-project.org\"))\n\nOutlined below are the various functions and their capacities as provided by the package."
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#examples",
+    "href": "software/dyn4cast-environment/index.html#examples",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nView the data without transformation\n\ndata0 &lt;- Transform %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data0, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\n\n\nTransformation by min-max method\n\ndata1 &lt;- data_transform(Transform[, -1], 1)\ndata1 &lt;- cbind(Transform[, 1], data1)\ndata1 &lt;- data1 %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data1, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\n\n\nlog transformation\n\ndata2 &lt;- data_transform(Transform[, -1], 2)\ndata2 &lt;- cbind(Transform[, 1], data2)\ndata2 &lt;- data2 %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data2, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\n\n\nMean-SD transformation\n\ndata3 &lt;- data_transform(Transform[, -1], 3)\ndata3 &lt;- cbind(Transform[, 1], data3)\ndata3 &lt;- data3 %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data3, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\nFrom the various transformation, the pattern in the dataset became more clear. The choice of which method to use will depend on the nature of data."
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example",
+    "href": "software/dyn4cast-environment/index.html#example",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nTwenty eight points less than full length of data\n\nlibrary(forecast)\nlibrary(readr)\nCOVID19$Date &lt;- zoo::as.Date(COVID19$Date, format = \"%m/%d/%Y\")\n\nLEN &lt;- length(COVID19$Case)\nDss &lt;- seq(COVID19$Date[1], by = \"day\", length.out = LEN)\nORIGIN &lt;- \"2020-02-29\"\nlastdayfo21 &lt;- Dss[length(Dss)]\ngggg &lt;- COVID19[COVID19$Date &lt;= lastdayfo21 - 28, ]\nBREAKS &lt;- c(70, 131, 173, 228, 274)\ndyrima &lt;- auto.arima(gggg$Case)\n\nDynamicForecast(\n  date = gggg$Date, series = gggg$Case, dyrima = dyrima,\n  BREAKS = BREAKS, MaximumDate = \"2021-02-10\",\n  Trend = \"Day\", Length = 0, Type = \"Integer\"\n)\n\n\n\nFourteen points less than full length of data\n\nlastdayfo21 &lt;- Dss[length(Dss)]\nddy &lt;- COVID19[COVID19$Date &lt;= lastdayfo21 - 14, ]\nBREAKS &lt;- c(70, 131, 173, 228, 274)\ndyrima &lt;- auto.arima(ddy$Case)\n\nsuppressWarnings(DynamicForecast(\n  date = ddy$Date, series = ddy$Case,\n  dyrima = dyrima, BREAKS = BREAKS,\n  MaximumDate = \"2021-02-10\", Trend = \"Day\", Length = 0,\n  Type = \"Integer\"\n))\n\nThe constrained and unconstrained forecast are provided. It can be observed that the unconstrained forecast goes below zero and goes beyond the maximum observed value in the data."
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-1",
+    "href": "software/dyn4cast-environment/index.html#example-1",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nDD &lt;- rnorm(100000)\nformattedcut(DD, 12, FALSE)\nDD1 &lt;- cut(DD, 12)\nformattedcut(DD1, 12, TRUE)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#examples-1",
+    "href": "software/dyn4cast-environment/index.html#examples-1",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nRanking is supplied\n\nlibrary(readr)\ngarrett_data &lt;- data.frame(garrett_data)\nranking &lt;- c(\n  \"Serious constraint\", \"Constraint\",\n  \"Not certain it is a constraint\", \"Not a constraint\",\n  \"Not a serious constraint\"\n)\n\ngarrett_ranking(garrett_data, 5, ranking)\n\n\n\nRanking not supplied\n\ngarrett_ranking(garrett_data, 5)\n\n\n\nRank subset of the data\n\ngarrett_ranking(garrett_data, 8)\n\ngarrett_ranking(garrett_data, 4)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-2",
+    "href": "software/dyn4cast-environment/index.html#example-2",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\ndf &lt;- data.frame(\n  Age = c(\n    49, 30, 44, 37, 29, 56, 28, 26, 33, 45, 45, 19,\n    32, 22, 19, 28, 28, 36, 56, 34\n  ),\n  Sex = c(\n    \"male\", \"female\", \"female\", \"male\", \"male\", \"male\", \"female\",\n    \"female\", \"Prefer not to say\", \"male\", \"male\", \"female\", \"female\",\n    \"male\", \"Non-binary/third gender\", \"male\", \"female\", \"female\", \"male\",\n    \"male\"\n  )\n)\ngender(df)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-3",
+    "href": "software/dyn4cast-environment/index.html#example-3",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nEstimation Without test data, 14 models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\ny &lt;- linearsystems$MKTcost\nx &lt;- select(linearsystems, -MKTcost)\nLinearsystems(y, x, 6, 15)\n\n\n\nEstimation Without test data, polynomial models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nlimit &lt;- 20\nmod &lt;- 3\nTest &lt;- NA\nLinearsystems(y, x, 3, 15)\n\n\n\nEstimation With test data, linear models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nmod &lt;- 1\nLinearsystems(y, x, 1, 15)\n\n\n\nEstimation With test data, power models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nmod &lt;- 2\nLinearsystems(y, x, 2, 15)\n\n\n\nEstimation With test data, root models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nddc &lt;- cbind(y, x)\nsampling &lt;- sample(1:nrow(ddc), 0.8 * nrow(ddc))\ntrain &lt;- ddc[sampling, ]\nTest &lt;- ddc[-sampling, ]\ny &lt;- train$y\nx &lt;- train[, -1]\nmod &lt;- 4\nLinearsystems(y, x, 4, 15, Test)\n\n\n\nEstimation Without test data, inverse models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\ny &lt;- linearsystems$MKTcost\nx &lt;- select(linearsystems, -MKTcost)\nLinearsystems(y, x, 5, 15)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#examples-2",
+    "href": "software/dyn4cast-environment/index.html#examples-2",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nWith three dimensions and factor\n\ndata &lt;- mdpi1 # data from `MPI` package\ndata1 &lt;- mdpi2 # from `mpitbR` package\n\ndm &lt;- list(\n  d1 = c(\"Child.Mortality\", \"Access.to.health.care\"),\n  d2 = c(\"Years.of.education\", \"School.attendance\", \"School.lag\"),\n  d3 = c(\n    \"Cooking.Fuel\", \"Access.to.clean.source.of.water\",\n    \"Access.to.an.improve.sanatation\", \"Electricity\",\n    \"Housing.Materials\", \"Asset.ownership\"\n  )\n)\nmdi(data, dm, plots = \"t\", Factor = \"Region\")\n\n\n\nWith three dimensions, no factor\n\nmdi(data, dm, plots = \"t\")\n\n\n\nWith four dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"Child.Mortality\", \"Access.to.health.care\"),\n  d2 = c(\"Years.of.education\", \"School.attendance\", \"School.lag\"),\n  d3 = c(\n    \"Cooking.Fuel\", \"Electricity\", \"Housing.Materials\",\n    \"Asset.ownership\"\n  ),\n  d4 = c(\n    \"Access.to.clean.source.of.water\",\n    \"Access.to.an.improve.sanatation\"\n  )\n)\n\nmdi(data, dm,\n  id_add = c(\"Water and Sanitation\"),\n  plots = \"t\", Factor = \"Region\"\n)\n\n\n\nWith five dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_hsg\", \"d_ckfl\", \"d_asst\"),\n  d4 = c(\"d_sani\", \"d_wtr\"),\n  d5 = c(\"d_nutr\")\n)\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\",\n  plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith five dimensions, no plot\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\",\n  Factor = \"region\"\n)\n\n\n\nWith five dimensions, no factor, no plot\n\nmdi(data1, dm, id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\")\n\n\n\nWith six dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\", \"d_wtr\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\", \"d_asst\")\n)\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\",\n  id_addn = \"Housing and Assets\", plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith seven dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\", \"d_wtr\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\"),\n  d7 = c(\"d_asst\")\n)\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\",\n  id_add1 = \"Nutrition\", id_addn = c(\"Housing\", \"Assets\"),\n  plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith eight dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\"),\n  d7 = c(\"d_asst\"),\n  d8 = c(\"d_wtr\")\n)\n\nmdi(data1, dm,\n  id_add = \"Sanitation\",\n  id_add1 = \"Nutrition\",\n  id_addn = c(\"Housing\", \"Assets\", \"Water\"),\n  plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith nine dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\"),\n  d7 = c(\"d_asst\"),\n  d8 = c(\"d_wtr\"),\n  d9 = c(\"d_elct\")\n)\n\nmdi(data1, dm,\n  id_add = \"Sanitation\",\n  id_add1 = \"Nutrition\",\n  id_addn = c(\"Housing\", \"Assets\", \"Water\", \"Electricity\"),\n  plots = \"t\", Factor = \"region\"\n)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-4",
+    "href": "software/dyn4cast-environment/index.html#example-4",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(splines)\nlibrary(readr)\nModel &lt;- lm(states ~ bs(sequence, knots = c(30, 115)), data = Data)\nsuppressWarnings(MLMetrics(\n  Observed = Data, yvalue = Data$states, modeli = Model, K = 2,\n  Name = \"Linear\", Form = \"LM\", kutuf = 0, TTy = \"Number\"\n))"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-5",
+    "href": "software/dyn4cast-environment/index.html#example-5",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(psych)\nlibrary(readr)\nddd &lt;- Quicksummary\nGGn &lt;- names(ddd)\nGG &lt;- ncol(ddd)\nGGx &lt;- c(paste0(\"x0\", 1:9), paste(\"x\", 10:ncol(ddd), sep = \"\"))\nnames(ddd) &lt;- GGx\nlll &lt;- fa.parallel(ddd, fm = \"minres\", fa = \"fa\")\ndat &lt;- fa(ddd, nfactors = lll[[\"nfact\"]], rotate = \"varimax\", fm = \"minres\")\n\nmodel_factors(data = dat, DATA = ddd)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-6",
+    "href": "software/dyn4cast-environment/index.html#example-6",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nA vector data\n\nData &lt;- c(1.2, 0.5, 0.103, 7, 0.1501)\nPercent(Data = Data, Type = \"Frame\")\nData &lt;- 1.2\nPercent(Data = Data, Type = \"Value\")\n\n\n\nData frame\n\ndf &lt;- data.frame(\n  c(\n    A = 2320, 5760, 4800, 2600, 5700, 7800, 3000, 6300, 2400,\n    10000, 2220, 3740\n  ),\n  B = c(0, 0, 1620, 3600, 1200, 1200, 1200, 4250, 14000, 10000, 1850, 1850),\n  C = c(3000, 3000, 7800, 5400, 3900, 7800, 1950, 2400, 2400, 7000, 1850, 1850),\n  D = c(2900, 5760, 3750, 5400, 4095, 3150, 2080, 7800, 1920, 1200, 5000, 1950),\n  E = c(2900, 2030, 0, 5400, 5760, 1800, 2000, 1950, 1850, 3600, 5200, 5760),\n  F = c(2800, 5760, 1820, 4340, 7500, 2400, 2300, 1680, 1850, 0, 2800, 8000),\n  G = c(5760, 4600, 13000, 7800, 6270, 1200, 1440, 8000, 1200, 2025, 4800, 2600),\n  H = c(2100, 5760, 8250, 3900, 1800, 1200, 4800, 1800, 7800, 2035, 8000, 3000)\n)\nPercent(Data = df, Type = \"Frame\") # Value, Frame"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#examples-3",
+    "href": "software/dyn4cast-environment/index.html#examples-3",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nLikert-type data\n\nquicksummary(x = Quicksummary, Type = 2)\n\n\n\nContinuous data\n\nx &lt;- select(linearsystems, 1:6)\nquicksummary(x = x, Type = 1)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-7",
+    "href": "software/dyn4cast-environment/index.html#example-7",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(readr)\nTreatment &lt;- treatments$treatment\ndata &lt;- treatments[, c(2:3)]\ntreatment_model(Treatment, data)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-8",
+    "href": "software/dyn4cast-environment/index.html#example-8",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(readr)\ngarrett_data &lt;- data.frame(garrett_data)\nindex_construction(garrett_data)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-9",
+    "href": "software/dyn4cast-environment/index.html#example-9",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(readr)\ngarrett_data &lt;- data.frame(garrett_data)\nrelative_likert(garrett_data, Ranks = 3, Option = \"sccore\")\nrelative_likert(garrett_data, Ranks = 5, Option = \"sccore\")\nrelative_likert(garrett_data, Ranks = 7, Option = \"sccore\")\nrelative_likert(garrett_data, Ranks = 9, Option = \"sccore\")\n\nrelative_likert(Quicksummary, Ranks = 5, Option = \"sccore\")\n\nlibrary(tidyverse)\ndata_l &lt;- garrett_data %&gt;%\n  pivot_longer(cols = everything()) %&gt;%\n  mutate(value = case_when(value == 5 ~ \"Serious constraint\",\n    value == 4 ~ \"Constraint\",\n    value == 3 ~ \"Not certain it is a constraint\",\n    value == 2 ~ \"Not a constraint\",\n    value == 1 ~ \"Not a serious constraint\",\n    .default = \"None\"\n  )) %&gt;%\n  group_by(name) %&gt;%\n  mutate(row = row_number()) %&gt;%\n  pivot_wider(names_from = name, values_from = value) %&gt;%\n  select(-row) %&gt;%\n  unnest(cols = everything())\n\nranking &lt;- c(\n  \"Serious constraint\", \"Constraint\",\n  \"Not certain it is a constraint\", \"Not a constraint\",\n  \"Not a serious constraint\"\n)\n\nrelative_likert(data_l, Likert = ranking)"
+  },
+  {
+    "objectID": "software/dyn4cast-environment/index.html#example-10",
+    "href": "software/dyn4cast-environment/index.html#example-10",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(Dyn4cast)\nlibrary(tidyverse)\n\ncounts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)\noutcome &lt;- gl(3, 1, 9)\ntreatment &lt;- gl(3, 3)\nddc &lt;- data.frame(treatment, outcome, counts) # showing data\nglm.D93 &lt;- glm(counts ~ ., data = ddc, family = poisson())\nodds_summary(glm.D93)\n\nlibrary(MASS)\nanorexia\n\nanorex.1 &lt;- glm(Postwt ~ Prewt + Treat + offset(Prewt),\n  family = gaussian, data = anorexia\n)\nodds_summary(anorex.1)\n\nclotting &lt;- data.frame(\n  u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),\n  lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),\n  lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)\n)\nlot1 &lt;- glm(lot1 ~ log(u), data = clotting, family = Gamma)\nodds_summary(lot1)\n\nlot2 &lt;- glm(lot2 ~ log(u), data = clotting, family = Gamma)\nodds_summary(lot2)\n\nfS &lt;- glm(lot2 ~ log(u) + log(u^2), data = clotting, family = Gamma)\n# odds_summary(fS) #error because there is no convergence\n\nx &lt;- rnorm(100)\ny &lt;- rpois(100, exp(1 + x))\n\nlm2 &lt;- glm(y ~ x, family = quasi(variance = \"mu\", link = \"log\"))\nodds_summary(lm2)\n\nlm3 &lt;- glm(y ~ x, family = poisson)\nodds_summary(lm3)\n\nlm4 &lt;- glm(y ~ x, family = quasi(variance = \"mu^2\", link = \"log\"))\n# odds_summary(lm4) #error\n\ny &lt;- rbinom(100, 1, plogis(x))\n\nlm5 &lt;- glm(y ~ x,\n  family = quasi(variance = \"mu(1-mu)\", link = \"logit\"),\n  start = c(0, 1)\n)\nodds_summary(lm5)\n\nlibrary(betareg)\ndata(\"GasolineYield\")\ngy &lt;- betareg(yield ~ batch + temp, data = GasolineYield)\nodds_summary(gy)\n#'\nlibrary(mvProbit)\n## generate a simulated data set\nset.seed(123)\n# number of observations\nnObs &lt;- 50\n#'\n# generate explanatory variables\nxMat &lt;- cbind(\n  const = rep(1, nObs), x1 = as.numeric(rnorm(nObs) &gt; 0),\n  x2 = rnorm(nObs)\n)\n#'\n# model coefficients\nbeta &lt;- cbind(c(0.8, 1.2, -0.8), c(-0.6, 1.0, -1.6), c(0.5, -0.6, 1.2))\n#'\n# covariance matrix of error terms\nlibrary(miscTools)\nsigma &lt;- symMatrix(c(1, 0.2, 0.4, 1, -0.1, 1))\n#'\n# generate dependent variables\nyMatLin &lt;- xMat %*% beta\nyMat &lt;- (yMatLin + rmvnorm(nObs, sigma = sigma)) &gt; 0\ncolnames(yMat) &lt;- paste(\"y\", 1:3, sep = \"\")\n#'\nestResultStart &lt;- mvProbit(cbind(y1, y2, y3) ~ x1 + x2,\n  start = c(beta),\n  startSigma = sigma, data = as.data.frame(cbind(xMat, yMat)), iterlim = 1,\n  nGHK = 50\n)\nodds_summary(estResultStart)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#installation",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#installation",
+    "title": "Dyn4cast Environment",
+    "section": "Installation",
+    "text": "Installation\nThe released version of Dyn4cast can be installed from CRAN. The canonical form for CRAN is:\ninstall.packages(\"Dyn4cast\")\nThe development version is available now and can be installed from GitHub with:\n# install.packages(\"devtools\")\npak::pak(\"JobNmadu/Dyn4cast\")\nThe development version can also be installed through r-universe. Use the form:\n\ninstall.packages(\"Dyn4cast\", repos = c(\"https://jobnmadu.r-universe.dev\", \"https://cloud.r-project.org\"))\n\nOutlined below are the various functions and their capacities as provided by the package."
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#examples",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#examples",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nView the data without transformation\n\ndata0 &lt;- Transform %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data0, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\n\n\nTransformation by min-max method\n\ndata1 &lt;- data_transform(Transform[, -1], 1)\ndata1 &lt;- cbind(Transform[, 1], data1)\ndata1 &lt;- data1 %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data1, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\n\n\nlog transformation\n\ndata2 &lt;- data_transform(Transform[, -1], 2)\ndata2 &lt;- cbind(Transform[, 1], data2)\ndata2 &lt;- data2 %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data2, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\n\n\nMean-SD transformation\n\ndata3 &lt;- data_transform(Transform[, -1], 3)\ndata3 &lt;- cbind(Transform[, 1], data3)\ndata3 &lt;- data3 %&gt;%\n  pivot_longer(!X, names_to = \"Factors\", values_to = \"Data\")\n\nggplot(data = data3, aes(x = X, y = Data, fill = Factors, color = Factors)) +\n  geom_line() +\n  scale_fill_brewer(palette = \"Set1\") +\n  scale_color_brewer(palette = \"Set1\") +\n  labs(y = \"Data\", x = \"Series\", color = \"Factors\") +\n  theme_bw(base_size = 12)\n\nFrom the various transformation, the pattern in the dataset became more clear. The choice of which method to use will depend on the nature of data."
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nTwenty eight points less than full length of data\n\nlibrary(forecast)\nlibrary(readr)\nCOVID19$Date &lt;- zoo::as.Date(COVID19$Date, format = \"%m/%d/%Y\")\n\nLEN &lt;- length(COVID19$Case)\nDss &lt;- seq(COVID19$Date[1], by = \"day\", length.out = LEN)\nORIGIN &lt;- \"2020-02-29\"\nlastdayfo21 &lt;- Dss[length(Dss)]\ngggg &lt;- COVID19[COVID19$Date &lt;= lastdayfo21 - 28, ]\nBREAKS &lt;- c(70, 131, 173, 228, 274)\ndyrima &lt;- auto.arima(gggg$Case)\n\nDynamicForecast(\n  date = gggg$Date, series = gggg$Case, dyrima = dyrima,\n  BREAKS = BREAKS, MaximumDate = \"2021-02-10\",\n  Trend = \"Day\", Length = 0, Type = \"Integer\"\n)\n\n\n\nFourteen points less than full length of data\n\nlastdayfo21 &lt;- Dss[length(Dss)]\nddy &lt;- COVID19[COVID19$Date &lt;= lastdayfo21 - 14, ]\nBREAKS &lt;- c(70, 131, 173, 228, 274)\ndyrima &lt;- auto.arima(ddy$Case)\n\nsuppressWarnings(DynamicForecast(\n  date = ddy$Date, series = ddy$Case,\n  dyrima = dyrima, BREAKS = BREAKS,\n  MaximumDate = \"2021-02-10\", Trend = \"Day\", Length = 0,\n  Type = \"Integer\"\n))\n\nThe constrained and unconstrained forecast are provided. It can be observed that the unconstrained forecast goes below zero and goes beyond the maximum observed value in the data."
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-1",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-1",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nDD &lt;- rnorm(100000)\nformattedcut(DD, 12, FALSE)\nDD1 &lt;- cut(DD, 12)\nformattedcut(DD1, 12, TRUE)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#examples-1",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#examples-1",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nRanking is supplied\n\nlibrary(readr)\ngarrett_data &lt;- data.frame(garrett_data)\nranking &lt;- c(\n  \"Serious constraint\", \"Constraint\",\n  \"Not certain it is a constraint\", \"Not a constraint\",\n  \"Not a serious constraint\"\n)\n\ngarrett_ranking(garrett_data, 5, ranking)\n\n\n\nRanking not supplied\n\ngarrett_ranking(garrett_data, 5)\n\n\n\nRank subset of the data\n\ngarrett_ranking(garrett_data, 8)\n\ngarrett_ranking(garrett_data, 4)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-2",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-2",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\ndf &lt;- data.frame(\n  Age = c(\n    49, 30, 44, 37, 29, 56, 28, 26, 33, 45, 45, 19,\n    32, 22, 19, 28, 28, 36, 56, 34\n  ),\n  Sex = c(\n    \"male\", \"female\", \"female\", \"male\", \"male\", \"male\", \"female\",\n    \"female\", \"Prefer not to say\", \"male\", \"male\", \"female\", \"female\",\n    \"male\", \"Non-binary/third gender\", \"male\", \"female\", \"female\", \"male\",\n    \"male\"\n  )\n)\ngender(df)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-3",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-3",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nEstimation Without test data, 14 models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\ny &lt;- linearsystems$MKTcost\nx &lt;- select(linearsystems, -MKTcost)\nLinearsystems(y, x, 6, 15)\n\n\n\nEstimation Without test data, polynomial models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nlimit &lt;- 20\nmod &lt;- 3\nTest &lt;- NA\nLinearsystems(y, x, 3, 15)\n\n\n\nEstimation With test data, linear models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nmod &lt;- 1\nLinearsystems(y, x, 1, 15)\n\n\n\nEstimation With test data, power models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nmod &lt;- 2\nLinearsystems(y, x, 2, 15)\n\n\n\nEstimation With test data, root models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\nx &lt;- sampling[, -1]\ny &lt;- sampling$qOutput\nddc &lt;- cbind(y, x)\nsampling &lt;- sample(1:nrow(ddc), 0.8 * nrow(ddc))\ntrain &lt;- ddc[sampling, ]\nTest &lt;- ddc[-sampling, ]\ny &lt;- train$y\nx &lt;- train[, -1]\nmod &lt;- 4\nLinearsystems(y, x, 4, 15, Test)\n\n\n\nEstimation Without test data, inverse models\n\nlibrary(tidyverse)\nlibrary(ggtext)\n\ny &lt;- linearsystems$MKTcost\nx &lt;- select(linearsystems, -MKTcost)\nLinearsystems(y, x, 5, 15)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#examples-2",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#examples-2",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nWith three dimensions and factor\n\ndata &lt;- mdpi1 # data from `MPI` package\ndata1 &lt;- mdpi2 # from `mpitbR` package\n\ndm &lt;- list(\n  d1 = c(\"Child.Mortality\", \"Access.to.health.care\"),\n  d2 = c(\"Years.of.education\", \"School.attendance\", \"School.lag\"),\n  d3 = c(\n    \"Cooking.Fuel\", \"Access.to.clean.source.of.water\",\n    \"Access.to.an.improve.sanatation\", \"Electricity\",\n    \"Housing.Materials\", \"Asset.ownership\"\n  )\n)\nmdi(data, dm, plots = \"t\", Factor = \"Region\")\n\n\n\nWith three dimensions, no factor\n\nmdi(data, dm, plots = \"t\")\n\n\n\nWith four dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"Child.Mortality\", \"Access.to.health.care\"),\n  d2 = c(\"Years.of.education\", \"School.attendance\", \"School.lag\"),\n  d3 = c(\n    \"Cooking.Fuel\", \"Electricity\", \"Housing.Materials\",\n    \"Asset.ownership\"\n  ),\n  d4 = c(\n    \"Access.to.clean.source.of.water\",\n    \"Access.to.an.improve.sanatation\"\n  )\n)\n\nmdi(data, dm,\n  id_add = c(\"Water and Sanitation\"),\n  plots = \"t\", Factor = \"Region\"\n)\n\n\n\nWith five dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_hsg\", \"d_ckfl\", \"d_asst\"),\n  d4 = c(\"d_sani\", \"d_wtr\"),\n  d5 = c(\"d_nutr\")\n)\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\",\n  plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith five dimensions, no plot\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\",\n  Factor = \"region\"\n)\n\n\n\nWith five dimensions, no factor, no plot\n\nmdi(data1, dm, id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\")\n\n\n\nWith six dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\", \"d_wtr\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\", \"d_asst\")\n)\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\", id_add1 = \"Nutrition\",\n  id_addn = \"Housing and Assets\", plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith seven dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\", \"d_wtr\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\"),\n  d7 = c(\"d_asst\")\n)\n\nmdi(data1, dm,\n  id_add = \"Water and Sanitation\",\n  id_add1 = \"Nutrition\", id_addn = c(\"Housing\", \"Assets\"),\n  plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith eight dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\"),\n  d7 = c(\"d_asst\"),\n  d8 = c(\"d_wtr\")\n)\n\nmdi(data1, dm,\n  id_add = \"Sanitation\",\n  id_add1 = \"Nutrition\",\n  id_addn = c(\"Housing\", \"Assets\", \"Water\"),\n  plots = \"t\", Factor = \"region\"\n)\n\n\n\nWith nine dimensions and factor\n\ndm &lt;- list(\n  d1 = c(\"d_cm\"),\n  d2 = c(\"d_satt\", \"d_educ\"),\n  d3 = c(\"d_elct\", \"d_ckfl\"),\n  d4 = c(\"d_sani\"),\n  d5 = c(\"d_nutr\"),\n  d6 = c(\"d_hsg\"),\n  d7 = c(\"d_asst\"),\n  d8 = c(\"d_wtr\"),\n  d9 = c(\"d_elct\")\n)\n\nmdi(data1, dm,\n  id_add = \"Sanitation\",\n  id_add1 = \"Nutrition\",\n  id_addn = c(\"Housing\", \"Assets\", \"Water\", \"Electricity\"),\n  plots = \"t\", Factor = \"region\"\n)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-4",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-4",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(splines)\nlibrary(readr)\nModel &lt;- lm(states ~ bs(sequence, knots = c(30, 115)), data = Data)\nsuppressWarnings(MLMetrics(\n  Observed = Data, yvalue = Data$states, modeli = Model, K = 2,\n  Name = \"Linear\", Form = \"LM\", kutuf = 0, TTy = \"Number\"\n))"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-5",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-5",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(psych)\nlibrary(readr)\nddd &lt;- Quicksummary\nGGn &lt;- names(ddd)\nGG &lt;- ncol(ddd)\nGGx &lt;- c(paste0(\"x0\", 1:9), paste(\"x\", 10:ncol(ddd), sep = \"\"))\nnames(ddd) &lt;- GGx\nlll &lt;- fa.parallel(ddd, fm = \"minres\", fa = \"fa\")\ndat &lt;- fa(ddd, nfactors = lll[[\"nfact\"]], rotate = \"varimax\", fm = \"minres\")\n\nmodel_factors(data = dat, DATA = ddd)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-6",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-6",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nA vector data\n\nData &lt;- c(1.2, 0.5, 0.103, 7, 0.1501)\nPercent(Data = Data, Type = \"Frame\")\nData &lt;- 1.2\nPercent(Data = Data, Type = \"Value\")\n\n\n\nData frame\n\ndf &lt;- data.frame(\n  c(\n    A = 2320, 5760, 4800, 2600, 5700, 7800, 3000, 6300, 2400,\n    10000, 2220, 3740\n  ),\n  B = c(0, 0, 1620, 3600, 1200, 1200, 1200, 4250, 14000, 10000, 1850, 1850),\n  C = c(3000, 3000, 7800, 5400, 3900, 7800, 1950, 2400, 2400, 7000, 1850, 1850),\n  D = c(2900, 5760, 3750, 5400, 4095, 3150, 2080, 7800, 1920, 1200, 5000, 1950),\n  E = c(2900, 2030, 0, 5400, 5760, 1800, 2000, 1950, 1850, 3600, 5200, 5760),\n  F = c(2800, 5760, 1820, 4340, 7500, 2400, 2300, 1680, 1850, 0, 2800, 8000),\n  G = c(5760, 4600, 13000, 7800, 6270, 1200, 1440, 8000, 1200, 2025, 4800, 2600),\n  H = c(2100, 5760, 8250, 3900, 1800, 1200, 4800, 1800, 7800, 2035, 8000, 3000)\n)\nPercent(Data = df, Type = \"Frame\") # Value, Frame"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#examples-3",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#examples-3",
+    "title": "Dyn4cast Environment",
+    "section": "Examples",
+    "text": "Examples\n\nLikert-type data\n\nquicksummary(x = Quicksummary, Type = 2)\n\n\n\nContinuous data\n\nx &lt;- select(linearsystems, 1:6)\nquicksummary(x = x, Type = 1)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-7",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-7",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(readr)\nTreatment &lt;- treatments$treatment\ndata &lt;- treatments[, c(2:3)]\ntreatment_model(Treatment, data)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-8",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-8",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(readr)\ngarrett_data &lt;- data.frame(garrett_data)\nindex_construction(garrett_data)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-9",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-9",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(readr)\ngarrett_data &lt;- data.frame(garrett_data)\nrelative_likert(garrett_data, Ranks = 3, Option = \"sccore\")\nrelative_likert(garrett_data, Ranks = 5, Option = \"sccore\")\nrelative_likert(garrett_data, Ranks = 7, Option = \"sccore\")\nrelative_likert(garrett_data, Ranks = 9, Option = \"sccore\")\n\nrelative_likert(Quicksummary, Ranks = 5, Option = \"sccore\")\n\nlibrary(tidyverse)\ndata_l &lt;- garrett_data %&gt;%\n  pivot_longer(cols = everything()) %&gt;%\n  mutate(value = case_when(value == 5 ~ \"Serious constraint\",\n    value == 4 ~ \"Constraint\",\n    value == 3 ~ \"Not certain it is a constraint\",\n    value == 2 ~ \"Not a constraint\",\n    value == 1 ~ \"Not a serious constraint\",\n    .default = \"None\"\n  )) %&gt;%\n  group_by(name) %&gt;%\n  mutate(row = row_number()) %&gt;%\n  pivot_wider(names_from = name, values_from = value) %&gt;%\n  select(-row) %&gt;%\n  unnest(cols = everything())\n\nranking &lt;- c(\n  \"Serious constraint\", \"Constraint\",\n  \"Not certain it is a constraint\", \"Not a constraint\",\n  \"Not a serious constraint\"\n)\n\nrelative_likert(data_l, Likert = ranking)"
+  },
+  {
+    "objectID": "software/2026-08-12-dyn4cast-environment/index.html#example-10",
+    "href": "software/2026-08-12-dyn4cast-environment/index.html#example-10",
+    "title": "Dyn4cast Environment",
+    "section": "Example",
+    "text": "Example\n\nlibrary(Dyn4cast)\nlibrary(tidyverse)\n\ncounts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)\noutcome &lt;- gl(3, 1, 9)\ntreatment &lt;- gl(3, 3)\nddc &lt;- data.frame(treatment, outcome, counts) # showing data\nglm.D93 &lt;- glm(counts ~ ., data = ddc, family = poisson())\nodds_summary(glm.D93)\n\nlibrary(MASS)\nanorexia\n\nanorex.1 &lt;- glm(Postwt ~ Prewt + Treat + offset(Prewt),\n  family = gaussian, data = anorexia\n)\nodds_summary(anorex.1)\n\nclotting &lt;- data.frame(\n  u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),\n  lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),\n  lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)\n)\nlot1 &lt;- glm(lot1 ~ log(u), data = clotting, family = Gamma)\nodds_summary(lot1)\n\nlot2 &lt;- glm(lot2 ~ log(u), data = clotting, family = Gamma)\nodds_summary(lot2)\n\nfS &lt;- glm(lot2 ~ log(u) + log(u^2), data = clotting, family = Gamma)\n# odds_summary(fS) #error because there is no convergence\n\nx &lt;- rnorm(100)\ny &lt;- rpois(100, exp(1 + x))\n\nlm2 &lt;- glm(y ~ x, family = quasi(variance = \"mu\", link = \"log\"))\nodds_summary(lm2)\n\nlm3 &lt;- glm(y ~ x, family = poisson)\nodds_summary(lm3)\n\nlm4 &lt;- glm(y ~ x, family = quasi(variance = \"mu^2\", link = \"log\"))\n# odds_summary(lm4) #error\n\ny &lt;- rbinom(100, 1, plogis(x))\n\nlm5 &lt;- glm(y ~ x,\n  family = quasi(variance = \"mu(1-mu)\", link = \"logit\"),\n  start = c(0, 1)\n)\nodds_summary(lm5)\n\nlibrary(betareg)\ndata(\"GasolineYield\")\ngy &lt;- betareg(yield ~ batch + temp, data = GasolineYield)\nodds_summary(gy)\n#'\nlibrary(mvProbit)\n## generate a simulated data set\nset.seed(123)\n# number of observations\nnObs &lt;- 50\n#'\n# generate explanatory variables\nxMat &lt;- cbind(\n  const = rep(1, nObs), x1 = as.numeric(rnorm(nObs) &gt; 0),\n  x2 = rnorm(nObs)\n)\n#'\n# model coefficients\nbeta &lt;- cbind(c(0.8, 1.2, -0.8), c(-0.6, 1.0, -1.6), c(0.5, -0.6, 1.2))\n#'\n# covariance matrix of error terms\nlibrary(miscTools)\nsigma &lt;- symMatrix(c(1, 0.2, 0.4, 1, -0.1, 1))\n#'\n# generate dependent variables\nyMatLin &lt;- xMat %*% beta\nyMat &lt;- (yMatLin + rmvnorm(nObs, sigma = sigma)) &gt; 0\ncolnames(yMat) &lt;- paste(\"y\", 1:3, sep = \"\")\n#'\nestResultStart &lt;- mvProbit(cbind(y1, y2, y3) ~ x1 + x2,\n  start = c(beta),\n  startSigma = sigma, data = as.data.frame(cbind(xMat, yMat)), iterlim = 1,\n  nGHK = 50\n)\nodds_summary(estResultStart)"
   }
 ]

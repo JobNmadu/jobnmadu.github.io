@@ -9,6 +9,12 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - cv.qmd
+      - publications.qmd
+      - blog.qmd
+      - software.qmd
+      - posts.qmd
+      - contact.qmd
 
 format:
   html:
