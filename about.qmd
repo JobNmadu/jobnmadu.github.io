@@ -21,11 +21,8 @@ Professor of Econometric Modeling, Data Science & Machine Learning
 
 [Marwadi University, Rajkot, India](https://www.marwadiuniversity.ac.in/) 
 
-# Bio
-
-Data-Driven Development: Transforming complex research into actionable insights, empowering development through data-driven solutions
-
 # Education
+
   - PhD in Agricultural Economics, [Ahmadu Bello University, Zaria](), 2002
 
   - MSc in Agricultural Economics, [Ahmadu Bello University, Zaria](), 1998
