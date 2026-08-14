@@ -1,0 +1,33 @@
+---
+title: "Adaptive Capacity, Vulnerability and Resilience of Beneficiaries in Managing Agro-Allied Projects and Interventions in Nigeria"
+subtitle: "*Canadian Social Science, 22*(2):29-51"
+description: "This paper provides robust empirical evidence from 1,544 farming households across 25 LGAs in 12 Nigerian states, demonstrating that strengthening human capital, infrastructure, market access, and service provision is the most decisive pathway to building resilience and reducing vulnerability among beneficiaries of agro-allied interventions. The findings are particularly significant because they show that despite extensive investments over the past 25 years, many agricultural projects in Nigeria have failed to deliver targeted goals, underscoring the urgent need for policy and program redesign grounded in building capacity first."
+author:
+  - name: H. Sallawu
+  - name: S. Adebonojo
+  - name: E. A. Agboola 
+  - name: R. O. Akande
+  - name: B. A. Kadiri
+  - name: A. Abdullahi
+  - name: R. A. Lasisi
+  - name: F. Muhammed
+  - name: O. R. Ogunbukola
+  - name: S. A. Olanrewaju
+  - name: M. A. Olatunde
+  - name: S. Salam
+  - name: A. O. Sanusi
+  - name: J. C. Uwakwe
+  - name: Job Nmadu
+    url: https://jobnmadu.github.io/
+    orcid: 0000-0002-1320-8957
+    affiliation: Federal University of Technology, Minna, Nigeria
+    affiliation-url: https://staff.futminna.edu.ng/job-nmadu-97c300fa
+date: 2026-04-26
+categories: [Exposure, Sensitivity, Transformative capacity, Vulnerability status, Nigeria]
+citation:
+  url: http://dx.doi.org/10.3968/j19
+slug: journal-article
+image: RC.jpg
+draft: false
+---
+

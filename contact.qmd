@@ -1,4 +1,39 @@
 ---
 title: "Contact"
+#- icon: envelope
+#  link: job.nmadu@gmail.com
+#- icon: twitter
+#  link: https://twitter.com/JobNmadu
+#- icon: google-scholar
+#  link: http://scholar.google.com/citations?user=C1_-HgIAAAAJ&hl=en
+#- icon: github
+#  link: https://github.com/JobNmadu
+#- icon: linkedin
+#  link: https://www.linkedin.com/in/jobnmadu
+#- icon: telegram
+#  link: https://t.me/Job_Nmadu
+#- icon: blogger
+#  link: https://jobnmadu.blogspot.com/
+#- icon: orcid
+#  link: https://orcid.org/0000-0002-1320-8957
+#- address: School of Agriculture and Agricultural Technology Building, Phase 2
+#
+# Office hours: use `<br>` to insert a line break, or set to "" to remove office hours
+#office_hours = ""
+
+# Enter an optional link for booking appointments (e.g. calendly.com).
+#appointment_url = "https://calendly.com/job-nmadu"
+# Map provider:
+#   0: No map
+#   1: Google Maps
+#   2: OpenStreetMap (Mapnik)
+#   3: OpenStreetMap (Mapbox)
+#map = 2
+#map_api_key = "AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"
+#latitude = "9.533023"
+#longitude = "6.451892"
+# latitude = "9.534315693171378"
+# longitude = "6.468571197255537"
+#zoom = 15
 ---
 

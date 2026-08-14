@@ -1,4 +1,9 @@
 ---
 title: "CV"
+listing: 
+  contents: cv
+  type: grid
+  sort: "date desc" 
+  categories: true
 ---
 

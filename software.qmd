@@ -1,4 +1,9 @@
 ---
 title: "Software"
+listing: 
+  contents: software
+  type: grid
+  sort: "date desc" 
+  categories: true 
 ---
 

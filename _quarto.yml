@@ -4,11 +4,13 @@ project:
 
 website:
   title: "Data to information ...."
+  favicon: img/logos.jpg
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+      - text: About
       - cv.qmd
       - publications.qmd
       - blog.qmd
@@ -18,10 +20,7 @@ website:
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
+    theme: styles.scss
     toc: true
     page-layout: full
     mainfont: Elms Sans

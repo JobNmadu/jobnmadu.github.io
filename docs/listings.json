@@ -1,5 +1,25 @@
 [
   {
+    "listing": "/software.html",
+    "items": [
+      "/software/2026-08-12-dyn4cast-environment/index.html"
+    ]
+  },
+  {
+    "listing": "/publications.html",
+    "items": [
+      "/publications/2026-07-06-journal-article/index.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": []
+  },
+  {
+    "listing": "/cv.html",
+    "items": []
+  },
+  {
     "listing": "/blog.html",
     "items": []
   }
