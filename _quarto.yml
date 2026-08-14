@@ -9,8 +9,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-      - text: About
+      - about.qmd
       - cv.qmd
       - publications.qmd
       - blog.qmd
