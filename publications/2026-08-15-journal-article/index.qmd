@@ -1,0 +1,34 @@
+---
+title: "Drivers And Determinants of Multidimensional Poverty in Selected States of Nigeria"
+subtitle: "*International Journal of Agricultural Science, Research and Technology in Extension and Education Systems, 16*(2): 143-162"
+description: "The central message in this paper, using data from 1614 respondents, is that households exposed to security shocks are more likely to experience higher levels of deprivation, reflecting the disruptive impact of conflict and insecurity on livelihoods, assets, and social services. Conflict and insecurity often lead to displacement, loss of productive assets, disruption of economic activities, and reduced access to education and healthcare, thereby increasing multidimensional poverty."
+author:
+  - name: H. Sallawu
+  - name: A. Abdullahi
+  - name: A. A. Abduljelil
+  - name: D. D. Adekunle
+  - name: A. P. Adesakin
+  - name: A. E. Adeseun
+  - name: A. Auru, R
+  - name: O. Bomodeoku
+  - name: B. W. Dakay
+  - name: A. Jibrin
+  - name: J. Moses
+  - name: G. T. Oguntebi
+  - name: F. O. Okafor
+  - name: E. O. Oshin
+  - name: A. O. Peters 
+  - name: Job Nmadu
+    url: https://jobnmadu.github.io/
+    orcid: 0000-0002-1320-8957
+    affiliation: Federal University of Technology, Minna, Nigeria
+    affiliation-url: https://staff.futminna.edu.ng/job-nmadu-97c300fa
+date: 2026-06-30
+categories: [Beta regression, Education, Energy access, Infrastructure, Rural households, Livelihood diversification]
+citation:
+  url: http://dx.doi.org/10.71505/ijasrt.2026.1225262
+slug: journal-article
+image: mdpi.png
+draft: false
+---
+
