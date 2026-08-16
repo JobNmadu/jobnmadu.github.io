@@ -2,6 +2,8 @@
 title: "About"
 ---
 
+![](img/haggai_04.jpg)
+
 # **Job Nmadu**, **Professor of Econometric Modeling**
 
 *Data-Driven Development through transforming complex agricultural research and interventions into actionable economic and welfare effects, empowering development.*
@@ -9,27 +11,29 @@ title: "About"
 
 *Three decades of industry experience in teaching research and community development as Head of Department, Industrial Liaison Officer, Dean, Director, Consultant, Church and Community leader.*
 
+![](img/rank2026.jpg)
+
 # Role
 
 Professor of Econometric Modeling, Data Science & Machine Learning
 
 # Affiliations
 
-[Federal University of Technology, Minna, Nigeria](https://www.futminna.edu.ng)
+<i class="fa-solid fa-book-open-reader"></i> [Federal University of Technology, Minna, Nigeria](https://www.futminna.edu.ng)
 
-[Kubu Science and Technology Institute, South Africa](https://www.ksti.co.za/) 
+<i class="fa-solid fa-book-open-reader"></i> [Kubu Science and Technology Institute, South Africa](https://www.ksti.co.za/) 
 
-[Marwadi University, Rajkot, India](https://www.marwadiuniversity.ac.in/) 
+<i class="fa-solid fa-book-open-reader"></i> [Marwadi University, Rajkot, India](https://www.marwadiuniversity.ac.in/) 
 
 # Education
 
-  - PhD in Agricultural Economics, [Ahmadu Bello University, Zaria](), 2002
+{{< fa graduation-cap >}} PhD in Agricultural Economics, [Ahmadu Bello University, Zaria](), 2002
 
-  - MSc in Agricultural Economics, [Ahmadu Bello University, Zaria](), 1998
+{{< fa graduation-cap >}} MSc in Agricultural Economics, [Ahmadu Bello University, Zaria](), 1998
   
-  - Diploma in Data Processing and Computer Programming, Soft Design Computer Institute, Zaria, 1995
+{{< fa graduation-cap >}} Diploma in Data Processing and Computer Programming, Soft Design Computer Institute, Zaria, 1995
   
-  - BSc in Agriculture, [Ahmadu Bello University, Zaria](), 1987
+{{< fa graduation-cap >}} BSc in Agriculture, [Ahmadu Bello University, Zaria](), 1987
 
 # Interests
 
@@ -44,13 +48,13 @@ Professor of Econometric Modeling, Data Science & Machine Learning
 
 # Skills
 
-- Data Collection, Wrangling, Analysis and Visualisation
+{{< fa chart-line >}} Data Collection, Wrangling, Analysis and Visualisation | 85%
   
-- Leadership, Administration and Coordination
+<i class="fa-solid fa-user-secret"></i> Leadership, Administration and Coordination | 80%
 
-- Modelling, Data Science, Machine Learning, R/CGE Programming
+<i class="fa-solid fa-toolbox"></i> Modelling, Data Science, Machine Learning, R/CGE Programming | 70%
 
-- Research, Consultancy, Collaboration and Networking
+<i class="fa-brands fa-searchengin"></i> Research, Consultancy, Collaboration and Networking | 75%
   
 # Experience
 
