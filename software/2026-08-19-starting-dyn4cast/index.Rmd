@@ -12,7 +12,7 @@ categories: [R, Dyn4cast, Data Science, Econometrics]
 citation:
   url: https://jobnmadu.github.io/software/2026-08-12-starting-dyn4cast/
 slug: starting-dyn4cast
-image: img/logo.png
+image: logo.png
 draft: false
 ---
 

@@ -12,7 +12,7 @@ categories: [R, Dynamic forecasting, Machine Learning]
 citation:
   url: https://jobnmadu.github.io/software/2026-08-12-dyn4cast-environment/
 slug: dyn4cast-environment
-image: img/logo.png
+image: logo.png
 draft: false
 ---
 
