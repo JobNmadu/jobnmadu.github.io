@@ -7,7 +7,7 @@
     ]
   },
   {
-    "listing": "/posts.html",
+    "listing": "/blog.html",
     "items": []
   },
   {
@@ -15,12 +15,13 @@
     "items": []
   },
   {
-    "listing": "/blog.html",
+    "listing": "/posts.html",
     "items": []
   },
   {
     "listing": "/publications.html",
     "items": [
+      "/publications/2026-10-02-journal-article/index.html",
       "/publications/2026-08-15-journal-article/index.html",
       "/publications/2026-07-06-journal-article/index.html"
     ]

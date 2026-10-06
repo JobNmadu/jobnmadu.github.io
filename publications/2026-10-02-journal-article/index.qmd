@@ -1,0 +1,33 @@
+---
+title: "Impacts of Agricultural Interventions and Projects (2005-2025) on Agribusiness Participation and Income-Generating Ability of Farmers in Nigeria"
+subtitle: "*IIARD International Journal of Economics And Business Management, 12*(9): 242-261"
+description: "This study assesses the cumulative impacts of various agricultural interventions and projects implemented in Nigeria between 2005 and 2025 on farmers' agribusiness participation and income-generating capacity. Utilizing cross-sectional data collected from 1,544 randomly selected farmers across 12 Nigerian states, the researchers used descriptive statistics and an ordered logit model to evaluate agricultural outcomes. Over 72% of respondents reported measurable welfare and livelihood improvements in food security, household status, and overall economic stability. However, the regression analysis revealed striking paradoxes, demonstrating that the interventions' efficacy is severely bottlenecked by weak institutional frameworks and systemic constraints rather than their intrinsic design. Ultimately, the paper concludes that future Nigerian agricultural initiatives will fail to generate sustainable income unless they transition to comprehensive support ecosystems that integrate localized technology adoption, institutional transparency, robust microfinance monitoring, and grass-roots farmer involvement."
+author:
+  - name: H. Sallawu
+  - name: S. Adebonojo
+  - name: E. A. Agboola
+  - name: R. O. Akande
+  - name: B. A. Kadiri
+  - name: A. Abdullahi
+  - name: R., A. Lasisi
+  - name: F. Muhammed
+  - name: O. R. Ogunbukola
+  - name: S. A. Olanrewaju
+  - name: M. A. Olatunde
+  - name: S. Salam
+  - name: A. O. Sanusi
+  - name: J. C. Uwakwe
+  - name: Job Nmadu
+    url: https://jobnmadu.github.io/
+    orcid: 0000-0002-1320-8957
+    affiliation: Federal University of Technology, Minna, Nigeria
+    affiliation-url: https://staff.futminna.edu.ng/job-nmadu-97c300fa
+date: 2026-09-30
+categories: [knowledge co-creation, technology adoption ecosystem, self-selection bias, diminishing marginal returns to intervention participation]
+citation:
+  url: https://doi.org/10.56201/ijebm.vol.12.no9.2026.pg242.261
+slug: journal-article
+image: igc2025.png
+draft: false
+---
+
