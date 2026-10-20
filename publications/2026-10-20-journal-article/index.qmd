@@ -1,0 +1,33 @@
+---
+title: "Smallholder Farmers’ Participation in Agricultural Development Programmes: Socioeconomic, Cultural, and Institutional Perspectives from Nigeria"
+subtitle: "*GSAR Journal of Agriculture and Veterinary Sciences, 3*(10): 32-45"
+description: "This study examines the socioeconomic characteristics of farmers and their influence on participation in agricultural development programmes in Nigeria. Using descriptive analytical methods, the study analyses key demographic and institutional variables including age, gender, household size, educational attainment, cooperative membership, leadership participation, and access to agricultural institutions. The results indicate that most respondents fall within the economically active age group, suggesting strong potential for engagement in agricultural development initiatives. Male farmers constitute the majority of participants, reflecting gender disparities in access to productive resources and programme opportunities. The findings further show that relatively large household sizes provide family labour for farm activities, while higher levels of education enhance farmers’ capacity to access information, understand programme requirements, and adopt improved agricultural technologies. Cooperative membership also plays a significant role in facilitating access to extension services, credit facilities, and institutional support. However, only a small proportion of respondents hold leadership positions within farmer organizations, indicating possible inequalities in decision-making structures. In addition, variations in the accessibility of markets and agricultural institutions highlight infrastructural challenges faced by rural farmers. The study concludes that strengthening farmer organizations, improving institutional access, and addressing gender disparities are critical for enhancing smallholder farmers’ participation in agricultural development programmes. These findings provide useful insights for policymakers and development practitioners seeking to improve the effectiveness of agricultural interventions in developing economies."
+author:
+  - name: H. Sallawu
+  - name: S. Adebonojo
+  - name: E. A. Agboola
+  - name: R. O. Akande
+  - name: B. A. Kadiri
+  - name: A. Abdullahi
+  - name: R., A. Lasisi
+  - name: F. Muhammed
+  - name: O. R. Ogunbukola
+  - name: S. A. Olanrewaju
+  - name: M. A. Olatunde
+  - name: S. Salam
+  - name: A. O. Sanusi
+  - name: J. C. Uwakwe
+  - name: Job Nmadu
+    url: https://jobnmadu.github.io/
+    orcid: 0000-0002-1320-8957
+    affiliation: Federal University of Technology, Minna, Nigeria
+    affiliation-url: https://staff.futminna.edu.ng/job-nmadu-97c300fa
+date: 2026-10-20
+categories: [Cooperatives involvement, Rural livelihoods, Institutional access, Extension services, social networks]
+citation:
+  url: https://gsarpublishers.com/wp-content/uploads/2026/10/GSARJAVS1242026-Gellary-Script.pdf
+slug: journal-article
+image: graph.png
+draft: false
+---
+
